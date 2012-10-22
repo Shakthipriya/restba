@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+
+    <servlet>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.fourthelephant</param-value>
+        </init-param>
+        <!--Jersey logging-->
+
+        <!--
+                <init-param>
+                    <param-name>com.sun.jersey.spi.container.ContainerRequestFilters</param-name>
+                    <param-value>com.loomissayles.web.service.rest.RequestFilter</param-value>
+                    &lt;!&ndash;<param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>&ndash;&gt;
+                </init-param>
+                <init-param>
+                    <param-name>com.sun.jersey.spi.container.ContainerResponseFilters</param-name>
+                    <param-value>com.sun.jersey.api.container.filter.LoggingFilter</param-value>
+                </init-param>
+        -->
+
+
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <!-- GWT admin -->
+    <!--TODO: to be removed when migrated to servlet-api 3.0 and tomcat 7 -->
+
+    <!-- Jersey REST -->
+
+    <servlet-mapping>
+        <servlet-name>Jersey REST Service</servlet-name>
+        <url-pattern>/service/*</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+        <!-- Default to 5 minute session timeouts -->
+        <session-timeout>5</session-timeout>
+    </session-config>
+
+<!--
+    <security-constraint>
+        <display-name>dev resources</display-name>
+        <web-resource-collection>
+            <web-resource-name>devs</web-resource-name>
+            <description/>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>developer</role-name>
+        </auth-constraint>
+    </security-constraint>
+-->
+
+    <security-constraint>
+        <display-name>REST service</display-name>
+        <web-resource-collection>
+            <web-resource-name>rest</web-resource-name>
+            <description/>
+            <url-pattern>/service/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>developer</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+    <security-role>
+        <role-name>admin</role-name>
+    </security-role>
+
+    <security-role>
+        <role-name>developer</role-name>
+    </security-role>
+
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>MemoryRealm</realm-name>
+    </login-config>
+
+
+</web-app>

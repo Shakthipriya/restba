@@ -1,0 +1,29 @@
+<settings>
+    <servers>
+        <server>
+            <id>localhost</id>
+            <username>tomcatadmin</username>
+            <password>tomcatadmin</password>
+        </server>
+        <server>
+            <id>vmlinchprd01</id>
+            <username>tomcatadmin</username>
+            <password>tomcatadmin</password>
+        </server>
+        <server>
+            <id>credit-hedge</id>
+            <username>tomcat</username>
+            <password>tomcat</password>
+        </server>
+        <server>
+            <id>hudson</id>
+            <username>tomcatadmin</username>
+            <password>tomcatadmin</password>
+        </server>
+        <server>
+            <id>holbrook</id>
+            <username>tomcatadmin</username>
+            <password>tomcatadmin</password>
+        </server>
+    </servers>
+</settings>
